@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const BookList = props => {
+  const { books } = props;
+  console.log(books);
+
   return (
     <div className="list-books">
       <div className="list-books-title">
