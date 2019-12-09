@@ -41,7 +41,7 @@ As a result of this, every time that you pass `App.js` state into their children
 
 ## Group by a property in my objectArray
 
-In the `BookShelf.js` component I get books from `props` and I receive
+In the `BookShelf.js` component I get books from `props` and I receive 
 
 ## How to extract the property of an object
 

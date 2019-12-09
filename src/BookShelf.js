@@ -1,5 +1,4 @@
 import React from "react";
-import Book from "./Book";
 import BookList1 from "./BookList1";
 
 const BookShelf = props => {
@@ -31,7 +30,7 @@ const BookShelf = props => {
   });
 
   return (
-    <div className="bookshelf">
+    <div>
       {Object.keys(booksByShelf).map(shelf => {
         return (
           <div>
@@ -40,8 +39,6 @@ const BookShelf = props => {
           </div>
         );
       })}
-      <h2 className="bookshelf-title">Currently Reading</h2>
-      <Book />
     </div>
   );
 };
