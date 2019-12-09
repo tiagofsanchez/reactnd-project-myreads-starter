@@ -11,7 +11,6 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
-      console.log(books);
       this.setState(prevState => ({
         ...prevState,
         books
@@ -19,11 +18,26 @@ class BooksApp extends React.Component {
     });
   }
 
+  handleBookChangeShelf = (bookID, shelf) => {
+    BooksAPI.update(bookID, shelf).then(books => {
+      console.log(books);
+    });
+  };
+
   render() {
     const { books } = this.state;
     return (
       <div className="app">
-        <Route exact path="/" render={() => <BookList books={books} />} />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <BookList
+              books={books}
+              onChangeShelf={this.handleBookChangeShelf}
+            />
+          )}
+        />
         <Route path="/addbook" component={SearchPage} />
       </div>
     );

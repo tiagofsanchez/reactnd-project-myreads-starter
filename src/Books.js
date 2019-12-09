@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import BookSelector from "./BookSelector";
 
 const Books = props => {
-  const { books } = props;
+  const { books, onChangeShelf } = props;
   console.log(books);
   return (
     <Fragment>
@@ -19,7 +19,7 @@ const Books = props => {
                     backgroundImage: `url(${book.imageLinks.smallThumbnail})`
                   }}
                 ></div>
-                <BookSelector />
+                <BookSelector book={book} onChangeShelf={onChangeShelf} />
               </div>
               <div className="book-title">{book.title}</div>
               <div className="book-authors">{book.authors}</div>

@@ -41,7 +41,7 @@ As a result of this, every time that you pass `App.js` state into their children
 
 ## Group by a property in my objectArray
 
-In the `BookShelf.js` component I get books from `props` and I receive 
+In the `BookList.js` component I get books from `props` and I receive
 
 ## How to extract the property of an object
 
@@ -49,7 +49,7 @@ helpful links: [here](https://dev.to/saigowthamr/how-to-loop-through-object-in-j
 
 ## Many Authors
 
-how to take care of many authors
+how to take care of many authors and render them inline with one another
 
 ```jsx
 {

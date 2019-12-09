@@ -3,7 +3,7 @@ import BookShelf from "./BookShelf";
 import { Link } from "react-router-dom";
 
 const BookList = props => {
-  const { books } = props;
+  const { books, onChangeShelf } = props;
 
   //this will `groupBy` considering the property of my choosing.
   //in this case I wanted to be the shelf
@@ -35,7 +35,10 @@ const BookList = props => {
               return (
                 <div key={shelf}>
                   <h2 className="bookshelf-title">{shelf}</h2>
-                  <BookShelf books={booksByShelf[shelf]} />
+                  <BookShelf
+                    books={booksByShelf[shelf]}
+                    onChangeShelf={onChangeShelf}
+                  />
                 </div>
               );
             })}
