@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import BookSelector from "./BookSelector";
+import PropTypes from 'prop-types';
 
 const Books = props => {
   const { books, onChangeShelf } = props;
-  console.log(books);
   return (
     <Fragment>
       {books.map(book => {
@@ -30,5 +30,10 @@ const Books = props => {
     </Fragment>
   );
 };
+
+Books.prototypes ={ 
+  books: PropTypes.array.isRequired, 
+  onChangeShelf: PropTypes.func.isRequired
+}
 
 export default Books;
