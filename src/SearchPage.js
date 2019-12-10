@@ -22,13 +22,15 @@ class SearchPage extends Component {
   handleBookSearch = e => { 
     e.preventDefault();
     const { search } = this.state; 
-    BooksAPI.search(search).then(books => { 
+    BooksAPI.search(search).then(books => {
+      if (books !== "") {
       this.setState(prevState => ({
         ...prevState, 
         books: books, 
         search: ''
-      }))
+      }))}
     })
+    .catch(books=> console.log(books))
 
   }
 

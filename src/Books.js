@@ -6,7 +6,7 @@ const Books = props => {
   const { books, onChangeShelf } = props;
   return (
     <Fragment>
-      {books.map(book => {
+      { books && books.map(book => {
         return (
           <li key={book.id}>
             <div className="book">
