@@ -8,7 +8,7 @@ const Books = props => {
     <Fragment>
       {books.map(book => {
         return (
-          <li key={book.title}>
+          <li key={book.id}>
             <div className="book">
               <div className="book-top">
                 <div
