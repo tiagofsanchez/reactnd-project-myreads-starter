@@ -1,6 +1,6 @@
 import React from "react";
 import BookShelf from "./BookShelf";
-import { Link } from "react-router-dom";
+import AddBookButton from './AddBookButton';
 import PropTypes from "prop-types";
 
 const BookList = props => {
@@ -46,9 +46,7 @@ const BookList = props => {
           </div>
         </div>
       </div>
-      <Link className="open-search" to="/addbook">
-        <button>Add Book</button>
-      </Link>
+      <AddBookButton />
     </div>
   );
 };
