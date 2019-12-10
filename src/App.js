@@ -16,16 +16,15 @@ class BooksApp extends React.Component {
         books
       }));
     });
-    
   }
 
   handleBookChangeShelf = (book, shelf) => {
     if (book.shelf !== shelf) {
       BooksAPI.update(book, shelf).then(() => {
-        book.shelf=shelf
-        this.setState(prevState => ({ 
-          books: prevState.books.filter(b => b.id!== book.id).concat(book)
-        }))
+        book.shelf = shelf;
+        this.setState(prevState => ({
+          books: prevState.books.filter(b => b.id !== book.id).concat(book)
+        }));
       });
     }
   };
@@ -44,7 +43,12 @@ class BooksApp extends React.Component {
             />
           )}
         />
-        <Route path="/addbook" component={SearchPage} />
+        <Route
+          path="/addbook"
+          render={() => (
+            <SearchPage onChangeShelf={this.handleBookChangeShelf} />
+          )}
+        />
       </div>
     );
   }

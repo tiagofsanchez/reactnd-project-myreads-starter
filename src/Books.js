@@ -31,6 +31,7 @@ const Books = props => {
   );
 };
 
+//?? Why is this not catching my error on the SearchPage component ??
 Books.prototypes ={ 
   books: PropTypes.array.isRequired, 
   onChangeShelf: PropTypes.func.isRequired
