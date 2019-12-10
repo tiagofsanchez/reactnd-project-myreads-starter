@@ -75,3 +75,60 @@ how to take care of many authors and render them inline with one another
     });
 }
 ```
+
+## Set up the Controlled Component
+
+I have created a `BookSelector.js` that will have state that will be the `shelf` of a given book. At the beginning it will empty, but it will be updated with `componentDidMount()` depending on the `this.props.book.shelf`. 
+
+```jsx
+  state = {
+    shelf: ""
+  };
+
+  componentDidMount() {
+    this.setState({
+      shelf: this.props.book.shelf
+    });
+  }
+
+  handleChange = e => {
+    const { value } = e.target;
+    const { book, onChangeShelf } = this.props;
+    console.log(`I want to change ${book.id} from ${book.shelf} to ${value}`);
+    onChangeShelf(book, value);
+  };
+
+  render() {
+    const { shelf } = this.state;
+    return (
+      <div className="book-shelf-changer">
+        <select value={shelf} onChange={this.handleChange}>
+          <option value="move" disabled>
+            Move to...
+          </option>
+          <option value="currentlyReading">Currently Reading</option>
+          <option value="wantToRead">Want to Read</option>
+          <option value="read">Read</option>
+          <option value="none">None</option>
+        </select>
+      </div>
+    );
+  }
+}
+```
+
+Every time that I select a different shelf, the book will be changing it's location on the it will trigger the callback function that will take `book` and `shelf` as arguments to change the database and the overall state of the `App.js`
+
+```jsx
+  handleBookChangeShelf = (book, shelf) => {
+    if (book.shelf !== shelf) {
+      BooksAPI.update(book, shelf).then(() => {
+        BooksAPI.getAll().then(books => {
+          this.setState({books})
+        })
+      });
+    }
+  };
+```
+
+Above, however, I am considering 2 API calls, and to certain extent that will be inefficient and will slow down the UI. 

@@ -15,7 +15,7 @@ class BookSelector extends Component {
     const { value } = e.target;
     const { book, onChangeShelf } = this.props;
     console.log(`I want to change ${book.id} from ${book.shelf} to ${value}`);
-    onChangeShelf(book.id, value);
+    onChangeShelf(book, value);
   };
 
   render() {

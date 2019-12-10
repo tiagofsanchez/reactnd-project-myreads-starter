@@ -16,12 +16,18 @@ class BooksApp extends React.Component {
         books
       }));
     });
+    
   }
 
-  handleBookChangeShelf = (bookID, shelf) => {
-    BooksAPI.update(bookID, shelf).then(books => {
-      console.log(books);
-    });
+  handleBookChangeShelf = (book, shelf) => {
+    if (book.shelf !== shelf) {
+      BooksAPI.update(book, shelf).then(() => {
+        book.shelf=shelf
+        this.setState(prevState => ({ 
+          books: prevState.books.filter(b => b.id!== book.id).concat(book)
+        }))
+      });
+    }
   };
 
   render() {
