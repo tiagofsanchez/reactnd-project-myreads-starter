@@ -30,28 +30,41 @@ class SearchPage extends Component {
         search: ''
       }))}
     })
-    .catch(books=> console.log(books))
+    .catch(error=> console.log(error))
   }
+
+  
 
   render() {
     const { search , books } = this.state;
     const { onChangeShelf } = this.props
     console.log(this.state)
+
+    let booksOrNoBooks = "";
+    if (books.error === "empty query") {
+      booksOrNoBooks = <h1 style={{textAlign: `center`}}>We can't find anything... sorry, try again</h1>;
+    } else {
+      booksOrNoBooks = (
+        <ol className="books-grid">
+          {books && <Books books={books} onChangeShelf={onChangeShelf} />}
+        </ol>
+      );
+    }
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
           <CloseSearchButton />
           <div className="search-books-input-wrapper">
             <form onSubmit={this.handleBookSearch}> 
-            <input type="text" placeholder="Search by title or author" value={ search}  onChange={this.handleChange}/>
+            <input type="text" placeholder="Search by title or author" value={search}  onChange={this.handleChange}/>
             </form>
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid">
-            {books && <Books books={books} onChangeShelf={onChangeShelf}/>}
-          </ol>
+        {booksOrNoBooks}
         </div>
+        
       </div>
     );
   }
