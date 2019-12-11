@@ -26,8 +26,7 @@ const BookList = props => {
   if (books) {
     booksByShelf = groupBy(books, "shelf");
   }
-
-  console.log(booksByShelf)
+  
   return (
     <div className="list-books">
       <div className="list-books-title">

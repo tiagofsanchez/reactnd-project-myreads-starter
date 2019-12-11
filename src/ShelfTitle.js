@@ -11,10 +11,15 @@ const ShelfTitle = props => {
   const { shelf } = props;
   return (
     <Fragment>
-      {shelfName.map(s => {
+      {shelfName.map((s, index) => {
         if (s.shelf === shelf) {
-          return <h2 className="bookshelf-title" key={shelf}>{s.name}</h2>;
+          return (
+            <h2 className="bookshelf-title" key={shelf}>
+              {s.name}
+            </h2>
+          );
         }
+        return <div key={index}></div>;
       })}
     </Fragment>
   );

@@ -31,7 +31,6 @@ class SearchPage extends Component {
       }))}
     })
     .catch(books=> console.log(books))
-
   }
 
   render() {
@@ -60,7 +59,8 @@ class SearchPage extends Component {
 
 
 SearchPage.prototypes ={ 
-  onChangeShelf: PropTypes.func.isRequired
+  onChangeShelf: PropTypes.func.isRequired,
+  books: PropTypes.array.isRequired
 }
 
 export default SearchPage;
