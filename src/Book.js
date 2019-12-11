@@ -2,7 +2,7 @@ import React from "react";
 import BookSelector from "./BookSelector";
 
 const Book = props => {
-  const { book ,onChangeShelf } = props   
+  const { book ,onChangeShelf , changeStyleChecker } = props   
   return (
     <div className="book">
       <div className="book-top">
@@ -14,7 +14,7 @@ const Book = props => {
             backgroundImage: `url(${book.imageLinks.smallThumbnail})`
           }}
         ></div>
-        <BookSelector book={book} onChangeShelf={onChangeShelf} />
+        <BookSelector book={book} onChangeShelf={onChangeShelf} changeStyleChecker={changeStyleChecker} />
       </div>
       <div className="book-title">{book.title}</div>
       <div className="book-authors">{book.authors}</div>
