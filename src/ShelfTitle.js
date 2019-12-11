@@ -13,7 +13,7 @@ const ShelfTitle = props => {
     <Fragment>
       {shelfName.map(s => {
         if (s.shelf === shelf) {
-          return <h2 className="bookshelf-title">{s.name}</h2>;
+          return <h2 className="bookshelf-title" key={shelf}>{s.name}</h2>;
         }
       })}
     </Fragment>

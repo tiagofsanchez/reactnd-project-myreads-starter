@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import BookSelector from "./BookSelector";
+import Book from "./Book";
 import PropTypes from 'prop-types';
 
 const Books = props => {
@@ -9,21 +9,7 @@ const Books = props => {
       { books && books.map(book => {
         return (
           <li key={book.id}>
-            <div className="book">
-              <div className="book-top">
-                <div
-                  className="book-cover"
-                  style={{
-                    width: 128,
-                    height: 192,
-                    backgroundImage: `url(${book.imageLinks.smallThumbnail})`
-                  }}
-                ></div>
-                <BookSelector book={book} onChangeShelf={onChangeShelf} />
-              </div>
-              <div className="book-title">{book.title}</div>
-              <div className="book-authors">{book.authors}</div>
-            </div>
+            <Book book={book} onChangeShelf={onChangeShelf} />
           </li>
         );
       })}
