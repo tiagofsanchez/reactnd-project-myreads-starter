@@ -2,6 +2,9 @@ import React from "react";
 import BookShelf from "./BookShelf";
 import AddBookButton from './AddBookButton';
 import PropTypes from "prop-types";
+import ShelfTitle from './ShelfTitle';
+
+
 
 const BookList = props => {
   const { books, onChangeShelf } = props;
@@ -24,6 +27,7 @@ const BookList = props => {
     booksByShelf = groupBy(books, "shelf");
   }
 
+  console.log(booksByShelf)
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -35,7 +39,7 @@ const BookList = props => {
             {Object.keys(booksByShelf).map(shelf => {
               return (
                 <div key={shelf}>
-                  <h2 className="bookshelf-title">{shelf}</h2>
+                  <ShelfTitle shelf={shelf} />
                   <BookShelf
                     books={booksByShelf[shelf]}
                     onChangeShelf={onChangeShelf}
