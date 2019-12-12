@@ -23,7 +23,7 @@ class SearchPage extends Component {
     e.preventDefault();
     const { search } = this.state; 
     BooksAPI.search(search).then(books => {
-      if (books !== "") {
+      if (books !== "" && search !== "") {
       this.setState(prevState => ({
         ...prevState, 
         books: books, 
@@ -39,7 +39,7 @@ class SearchPage extends Component {
     console.log(this.state)
 
     let booksOrNoBooks = "";
-    if (books.error && books.error === "empty query" || books === 'undefined') {
+    if (books.error === "empty query" || books === 'undefined') {
       booksOrNoBooks = <h1 style={{textAlign: `center`}}>We can't find anything... sorry, try again</h1>;
     } else {
       booksOrNoBooks = (

@@ -13,10 +13,10 @@ class BookSelector extends Component {
 
   handleChange = e => {
     const { value } = e.target;
-    const { book, onChangeShelf , changeStyleChecker } = this.props;
+    const { book, onChangeShelf , moveBook } = this.props;
     console.log(`I want to change ${book.id} from ${book.shelf} to ${value}`);
     onChangeShelf(book, value);
-    changeStyleChecker(book.id, value)
+    moveBook( value)
   };
 
   render() {
