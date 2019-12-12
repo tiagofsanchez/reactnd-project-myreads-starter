@@ -8,7 +8,8 @@ class SearchPage extends Component {
   
   state = { 
     search: "", 
-    books: ""
+    books: "", 
+    myBooks:""
   }
   
   handleChange = e => { 
@@ -22,11 +23,13 @@ class SearchPage extends Component {
   handleBookSearch = e => { 
     e.preventDefault();
     const { search } = this.state; 
+    const { myArquive } = this.props
     BooksAPI.search(search).then(books => {
       if (books !== "" && search !== "") {
       this.setState(prevState => ({
         ...prevState, 
-        books: books, 
+        books: books,
+        myBooks: myArquive, 
         search: ''
       }))}
     })
@@ -34,7 +37,7 @@ class SearchPage extends Component {
   }
 
   render() {
-    const { search , books } = this.state;
+    const { search , books , myBooks } = this.state;
     const { onChangeShelf } = this.props
     console.log(this.state)
 
@@ -44,7 +47,7 @@ class SearchPage extends Component {
     } else {
       booksOrNoBooks = (
         <ol className="books-grid">
-          {books && <Books books={books} onChangeShelf={onChangeShelf} />}
+          {books && <Books books={books} onChangeShelf={onChangeShelf} myBooks={myBooks}/>}
         </ol>
       );
     }

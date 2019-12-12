@@ -7,7 +7,7 @@ class Book extends Component {
   };
 
   render() {
-    const { book, onChangeShelf } = this.props;
+    const { book, onChangeShelf , myBooks } = this.props;
 
     const onMoveBook = (shelf) => {
       if( shelf !== undefined ) {
@@ -34,6 +34,7 @@ class Book extends Component {
             ></div>
             <BookSelector
               book={book}
+              myBooks={myBooks}
               onChangeShelf={onChangeShelf}
               moveBook={onMoveBook}
             />

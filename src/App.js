@@ -46,7 +46,7 @@ class BooksApp extends React.Component {
         <Route
           path="/addbook"
           render={() => (
-            <SearchPage onChangeShelf={this.handleBookChangeShelf} />
+            <SearchPage onChangeShelf={this.handleBookChangeShelf} myArquive={books}/>
           )}
         />
       </div>

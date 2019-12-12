@@ -3,7 +3,7 @@ import Book from "./Book";
 import PropTypes from "prop-types";
 
 const Books = props => {
-  const { books, onChangeShelf } = props;
+  const { books, onChangeShelf , myBooks } = props;
 
   return (
     <Fragment>
@@ -12,6 +12,7 @@ const Books = props => {
           return (
             <Book
               book={book}
+              myBooks={myBooks}
               onChangeShelf={onChangeShelf}
               key={book.id}
             />

@@ -6,21 +6,36 @@ class BookSelector extends Component {
   };
 
   componentDidMount() {
-    this.setState({
-      shelf: this.props.book.shelf
-    });
+    const { book, myBooks } = this.props;
+    if (book.shelf === undefined) {
+      this.setState({ shelf: "none" });
+    } 
+    if (book.shelf !== undefined) {
+      this.setState({
+        shelf: book.shelf
+      });
+    } else {
+      myBooks.map(b => {
+        if (b.id === book.id) {
+          this.setState({
+            shelf: b.shelf
+          });
+        }
+      });
+    } 
   }
 
   handleChange = e => {
     const { value } = e.target;
-    const { book, onChangeShelf , moveBook } = this.props;
+    const { book, onChangeShelf, moveBook } = this.props;
     console.log(`I want to change ${book.id} from ${book.shelf} to ${value}`);
     onChangeShelf(book, value);
-    moveBook( value)
+    moveBook(value);
   };
 
   render() {
     const { shelf } = this.state;
+    console.log(this.state);
     return (
       <div className="book-shelf-changer">
         <select value={shelf} onChange={this.handleChange}>
