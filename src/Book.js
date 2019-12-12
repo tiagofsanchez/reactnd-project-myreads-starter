@@ -8,6 +8,10 @@ class Book extends Component {
 
   render() {
     const { book, onChangeShelf , myBooks } = this.props;
+    let coverBook = ``
+    if(book.imageLinks !== undefined) {
+      coverBook =`url(${book.imageLinks.smallThumbnail})`
+    }
 
     const onMoveBook = (shelf) => {
       if( shelf !== undefined ) {
@@ -29,7 +33,7 @@ class Book extends Component {
               style={{
                 width: 128,
                 height: 192,
-                backgroundImage: `url(${book.imageLinks.smallThumbnail})`
+                backgroundImage: coverBook
               }}
             ></div>
             <BookSelector
