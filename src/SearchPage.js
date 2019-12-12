@@ -33,15 +33,13 @@ class SearchPage extends Component {
     .catch(error=> console.log(error))
   }
 
-  
-
   render() {
     const { search , books } = this.state;
     const { onChangeShelf } = this.props
     console.log(this.state)
 
     let booksOrNoBooks = "";
-    if (books.error === "empty query") {
+    if (books.error && books.error === "empty query" || books === 'undefined') {
       booksOrNoBooks = <h1 style={{textAlign: `center`}}>We can't find anything... sorry, try again</h1>;
     } else {
       booksOrNoBooks = (
