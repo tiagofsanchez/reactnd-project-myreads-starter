@@ -1,53 +1,66 @@
 import React, { Component } from "react";
 import CloseSearchButton from "./CloseSearchButton";
-import * as BooksAPI from './BooksAPI';
+import * as BooksAPI from "./BooksAPI";
 import Books from "./Books";
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 
 class SearchPage extends Component {
-  
-  state = { 
-    search: "", 
-    books: "", 
-    myBooks:""
-  }
-  
-  handleChange = e => { 
-    const { value } = e.target
-    this.setState(prevState => ({
-      ...prevState, 
-      search: value
-    }))
-  }
+  state = {
+    search: "",
+    books: "",
+    myBooks: ""
+  };
 
-  handleBookSearch = e => { 
-    e.preventDefault();
-    const { search } = this.state; 
-    const { myArquive } = this.props
-    BooksAPI.search(search).then(books => {
-      if (books !== "" && search !== "") {
+  handleChange = e => {
+    const { value } = e.target;
+    const { search } = this.state;
+    const { myArchive } = this.props;
+
+    this.setState(prevState => ({
+      ...prevState,
+      search: value
+    }));
+    if (search) {
+      BooksAPI.search(search).then(books => {
+        if (books !== "" && search !== "") {
+          this.setState(prevState => ({
+            ...prevState,
+            books: books,
+            myBooks: myArchive
+          }));
+        }
+      });
+    } else {
+      console.log(search);
       this.setState(prevState => ({
-        ...prevState, 
-        books: books,
-        myBooks: myArquive, 
-        search: ''
-      }))}
-    })
-    .catch(error=> console.log(error))
-  }
+        ...prevState,
+        books: ""
+      }));
+    }
+  };
 
   render() {
-    const { search , books , myBooks } = this.state;
-    const { onChangeShelf } = this.props
-    console.log(this.state)
+    const { search, books, myBooks } = this.state;
+    const { onChangeShelf } = this.props;
+    console.log(this.state);
 
     let booksOrNoBooks = "";
-    if (books.error === "empty query" || books === 'undefined') {
-      booksOrNoBooks = <h1 style={{textAlign: `center`}}>We can't find anything... sorry, try again</h1>;
+    if (books.error === "empty query" || books === "undefined") {
+      booksOrNoBooks = (
+        <h1 style={{ textAlign: `center` }}>
+          We can't find anything... sorry, try again
+        </h1>
+      );
     } else {
       booksOrNoBooks = (
         <ol className="books-grid">
-          {books && <Books books={books} onChangeShelf={onChangeShelf} myBooks={myBooks}/>}
+          {books && (
+            <Books
+              books={books}
+              onChangeShelf={onChangeShelf}
+              myBooks={myBooks}
+            />
+          )}
         </ol>
       );
     }
@@ -57,24 +70,23 @@ class SearchPage extends Component {
         <div className="search-books-bar">
           <CloseSearchButton />
           <div className="search-books-input-wrapper">
-            <form onSubmit={this.handleBookSearch}> 
-            <input type="text" placeholder="Search by title or author" value={search}  onChange={this.handleChange}/>
-            </form>
+            <input
+              type="text"
+              placeholder="Search by title or author"
+              value={search}
+              onChange={this.handleChange}
+            />
           </div>
         </div>
-        <div className="search-books-results">
-        {booksOrNoBooks}
-        </div>
-        
+        <div className="search-books-results">{booksOrNoBooks}</div>
       </div>
     );
   }
 }
 
-
-SearchPage.prototypes ={ 
+SearchPage.prototypes = {
   onChangeShelf: PropTypes.func.isRequired,
   books: PropTypes.array.isRequired
-}
+};
 
 export default SearchPage;

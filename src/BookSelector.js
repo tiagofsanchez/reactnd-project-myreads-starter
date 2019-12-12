@@ -9,7 +9,7 @@ class BookSelector extends Component {
     const { book, myBooks } = this.props;
     if (book.shelf === undefined) {
       this.setState({ shelf: "none" });
-    } 
+    }
     if (book.shelf !== undefined) {
       this.setState({
         shelf: book.shelf
@@ -22,13 +22,12 @@ class BookSelector extends Component {
           });
         }
       });
-    } 
+    }
   }
 
   handleChange = e => {
     const { value } = e.target;
     const { book, onChangeShelf, moveBook } = this.props;
-    console.log(`I want to change ${book.id} from ${book.shelf} to ${value}`);
     onChangeShelf(book, value);
     moveBook(value);
   };

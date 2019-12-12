@@ -19,7 +19,7 @@ class BooksApp extends React.Component {
   }
 
   handleBookChangeShelf = (book, shelf) => {
-    if ( book && book.shelf !== shelf) {
+    if (book && book.shelf !== shelf) {
       BooksAPI.update(book, shelf).then(() => {
         book.shelf = shelf;
         this.setState(prevState => ({
@@ -31,6 +31,7 @@ class BooksApp extends React.Component {
 
   render() {
     const { books } = this.state;
+    console.log(books);
     return (
       <div className="app">
         <Route
@@ -46,7 +47,10 @@ class BooksApp extends React.Component {
         <Route
           path="/search"
           render={() => (
-            <SearchPage onChangeShelf={this.handleBookChangeShelf} myArquive={books}/>
+            <SearchPage
+              onChangeShelf={this.handleBookChangeShelf}
+              myArchive={books}
+            />
           )}
         />
       </div>

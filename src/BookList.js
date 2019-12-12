@@ -1,10 +1,8 @@
 import React from "react";
 import BookShelf from "./BookShelf";
-import AddBookButton from './AddBookButton';
+import AddBookButton from "./AddBookButton";
 import PropTypes from "prop-types";
-import ShelfTitle from './ShelfTitle';
-
-
+import ShelfTitle from "./ShelfTitle";
 
 const BookList = props => {
   const { books, onChangeShelf } = props;
@@ -22,11 +20,14 @@ const BookList = props => {
     }, {});
   };
 
+  //creat an object that Groups the books considering the shelf that they are in
   let booksByShelf = {};
   if (books) {
     booksByShelf = groupBy(books, "shelf");
   }
-  
+
+  console.log(booksByShelf);
+
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -54,9 +55,9 @@ const BookList = props => {
   );
 };
 
-BookList.prototypes = { 
-  books: PropTypes.array.isRequired, 
+BookList.prototypes = {
+  books: PropTypes.array.isRequired,
   onChangeShelf: PropTypes.func.isRequired
-}
+};
 
 export default BookList;
