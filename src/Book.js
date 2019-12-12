@@ -20,8 +20,6 @@ class Book extends Component {
     let backgroundColorIfSelected = { backgroundColor: `none` };
     if(this.state.changeStyle) {backgroundColorIfSelected = { backgroundColor: `darkgray` } }
 
-    console.log(this.state);
-
     return (
       <li key={book.id} style={backgroundColorIfSelected}>
         <div className="book">

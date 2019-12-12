@@ -131,4 +131,4 @@ Every time that I select a different shelf, the book will be changing it's locat
   };
 ```
 
-Above, however, I am considering 2 API calls, and to certain extent that will be inefficient and will slow down the UI. 
+Above, however, I am considering 2 API calls, and to certain extent I reckon that will be inefficient and will slow down the UI.
