@@ -24,3 +24,37 @@ I am not sure how should I think about this
 ## prop-type
 
 Not sure why my implementation doesn't work
+
+
+## bookSelector
+
+There are a couple of things here: 
+- the below code give me the following alert on the console 
+```
+  Line 18:  Expected to return a value in arrow function  array-callback-return\
+```
+- is this the best approach?
+- whenever I change the selector for the new ones, the shelf will default to none
+- change the selector for the books that I have already, the selector will default for the previous one
+
+```js
+ componentDidMount() {
+    const { book, myBooks } = this.props;
+    if (book.shelf === undefined) {
+      this.setState({ shelf: "none" });
+    } 
+    if (book.shelf !== undefined) {
+      this.setState({
+        shelf: book.shelf
+      });
+    } else {
+      myBooks.map(b => {
+        if (b.id === book.id) {
+          this.setState({
+            shelf: b.shelf
+          });
+        }
+      });
+    } 
+  }
+```

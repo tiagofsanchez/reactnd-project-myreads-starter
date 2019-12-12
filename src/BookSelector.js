@@ -35,7 +35,7 @@ class BookSelector extends Component {
 
   render() {
     const { shelf } = this.state;
-    console.log(this.state);
+
     return (
       <div className="book-shelf-changer">
         <select value={shelf} onChange={this.handleChange}>
