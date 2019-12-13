@@ -25,6 +25,28 @@ class BookSelector extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { book, myBooks } = this.props;
+    if (myBooks !== prevProps.myBooks) {
+      if (book.shelf === undefined) {
+        this.setState({ shelf: "none" });
+      }
+      if (book.shelf !== undefined) {
+        this.setState({
+          shelf: book.shelf
+        });
+      } else {
+        myBooks.map(b => {
+          if (b.id === book.id) {
+            this.setState({
+              shelf: b.shelf
+            });
+          }
+        });
+      }
+    }
+  }
+
   handleChange = e => {
     const { value } = e.target;
     const { book, onChangeShelf, moveBook } = this.props;

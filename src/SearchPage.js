@@ -11,6 +11,16 @@ class SearchPage extends Component {
     myBooks: ""
   };
 
+  componentDidUpdate(prevProps) {
+    const { myArchive } = this.props;
+    if (myArchive !== prevProps.myArchive) {
+      this.setState(prevState => ({
+        ...prevState,
+        myBooks: myArchive
+      }));
+    }
+  }
+
   handleChange = e => {
     const { value } = e.target;
     const { search } = this.state;
