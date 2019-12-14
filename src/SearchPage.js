@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 class SearchPage extends Component {
   static propTypes = {
     onChangeShelf: PropTypes.func.isRequired,
-    myArchive: PropTypes.array.isRequired
+    myArchive: PropTypes.array
   };
 
   state = {
@@ -52,7 +52,6 @@ class SearchPage extends Component {
         if (books !== "") {
           this.setState(prevState => ({
             ...prevState,
-            search: value,
             books: books,
             myBooks: myArchive
           }));
@@ -61,8 +60,7 @@ class SearchPage extends Component {
     } else {
       this.setState(prevState => ({
         ...prevState,
-        books: "",
-        search: ""
+        books: ""
       }));
     }
   };
