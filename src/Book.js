@@ -30,9 +30,13 @@ class Book extends Component {
 
     let backgroundColorIfSelected = { backgroundColor: `none` };
     if (this.state.changeStyle) {
-      backgroundColorIfSelected = { backgroundColor: `darkgray` };
+      backgroundColorIfSelected = {
+        backgroundColor: `darkgray`,
+        margin: `5px`
+      };
     }
 
+    console.log(book.authors);
     return (
       <li key={book.id} style={backgroundColorIfSelected}>
         <div className="book">
@@ -53,7 +57,12 @@ class Book extends Component {
             />
           </div>
           <div className="book-title">{book.title}</div>
-          <div className="book-authors">{book.authors}</div>
+          <div className="book-authors">
+            {book.authors &&
+              book.authors.map(author => {
+                return <p style={{ margin: 0 }}>{author}</p>;
+              })}
+          </div>
         </div>
       </li>
     );
