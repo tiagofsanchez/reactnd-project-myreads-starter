@@ -183,7 +183,7 @@ This one was interesting as I needed to think about how to solve for 2 problems:
 
 ### Real time search
 
-Actually easier then I expected, you have to implement the API call on the `onChange` handler that you will implement. My implementation as follows:
+Actually easier than I expected, you have to implement the API call on the `onChange` handler that you will implement. My implementation as follows:
 
 ```jsx
 // in SeachPage.js
@@ -221,6 +221,10 @@ handleChange = e => {
   }
 };
 ```
+
+This implementation is not great because of the ASYNC nature of `this.setState`. Above the API call is being made on the back of `this.state.search` and this will give me a "delay".
+
+As such, I need to search for value directly. You can see this on the `SearchPage.js` component.
 
 ### Is the searched Book in any shelf already?
 

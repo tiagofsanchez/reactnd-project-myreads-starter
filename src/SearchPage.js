@@ -3,6 +3,7 @@ import CloseSearchButton from "./CloseSearchButton";
 import * as BooksAPI from "./BooksAPI";
 import Books from "./Books";
 import PropTypes from "prop-types";
+import { debounce } from "throttle-debounce";
 
 class SearchPage extends Component {
   state = {
@@ -11,9 +12,15 @@ class SearchPage extends Component {
     myBooks: ""
   };
 
+  /*
+  I am maintaining a single source of truth on my `App.js` and to pass the shelf along 
+  to every Book, depending on my search and the books shelf I will need to check if my 
+  props have changed and push them if they did. NOTE: the props will get change every
+  time the user selects a different shelf for any book.
+  */
   componentDidUpdate(prevProps) {
     const { myArchive } = this.props;
-    if (myArchive !== prevProps.myArchive) {
+    if (JSON.stringify(myArchive) !== JSON.stringify(prevProps.myArchive)) {
       this.setState(prevState => ({
         ...prevState,
         myBooks: myArchive
@@ -21,30 +28,33 @@ class SearchPage extends Component {
     }
   }
 
+  //Make the API Call of the Books depending on the user inputs
   handleChange = e => {
     const { value } = e.target;
-    const { search } = this.state;
     const { myArchive } = this.props;
-
-    this.setState(prevState => ({
-      ...prevState,
-      search: value
-    }));
-    if (search) {
-      BooksAPI.search(search).then(books => {
-        if (books !== "" && search !== "") {
-          this.setState(prevState => ({
-            ...prevState,
-            books: books,
-            myBooks: myArchive
-          }));
-        }
+    /*
+    I need to search for `value` as this.setState is ASYNC and 
+    if I search for this.state.search will have "delay" given the 
+    this.setState nature 
+    */
+    if (value) {
+      debounce(300, () => {
+        BooksAPI.search(value).then(books => {
+          if (books !== "") {
+            this.setState(prevState => ({
+              ...prevState,
+              search: value,
+              books: books,
+              myBooks: myArchive
+            }));
+          }
+        });
       });
     } else {
-      console.log(search);
       this.setState(prevState => ({
         ...prevState,
-        books: ""
+        books: "",
+        search: ""
       }));
     }
   };
@@ -52,7 +62,6 @@ class SearchPage extends Component {
   render() {
     const { search, books, myBooks } = this.state;
     const { onChangeShelf } = this.props;
-    console.log(this.state);
 
     let booksOrNoBooks = "";
     if (books.error === "empty query" || books === "undefined") {
@@ -96,7 +105,8 @@ class SearchPage extends Component {
 
 SearchPage.prototypes = {
   onChangeShelf: PropTypes.func.isRequired,
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  myArchive: PropTypes.array.isRequired
 };
 
 export default SearchPage;
