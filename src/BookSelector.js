@@ -1,6 +1,14 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class BookSelector extends Component {
+  static propTypes = {
+    book: PropTypes.object.isRequired,
+    myBooks: PropTypes.array,
+    onChangeShelf: PropTypes.func.isRequired,
+    moveBook: PropTypes.func.isRequired
+  };
+
   state = {
     shelf: ""
   };

@@ -53,8 +53,8 @@ const BookList = props => {
   );
 };
 
-BookList.prototypes = {
-  books: PropTypes.array.isRequired,
+BookList.propTypes = {
+  books: PropTypes.array,
   onChangeShelf: PropTypes.func.isRequired
 };
 

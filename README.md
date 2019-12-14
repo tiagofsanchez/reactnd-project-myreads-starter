@@ -4,9 +4,9 @@ My Udacity project.
 
 ## TL;DR
 
-To get started developing right away:
+To get started and test my project
 
-- install all project dependencies with `npm install`
+- install project dependencies with `npm install`
 - start the development server with `npm start`
 
 ## The structure of my Project
@@ -243,7 +243,7 @@ componentDidMount() {
         shelf: book.shelf
       });
     } else {
-      myBooks.map(b => {
+      myBooks.forEach(b => {
         if (b.id === book.id) {
           this.setState({
             shelf: b.shelf
@@ -252,7 +252,36 @@ componentDidMount() {
       });
     }
   }
+```
 
+The above works very well when this component gets mounted as it passes the correct information so that I can correctly update the state of my `BookSelector.js` component.
+
+However I will be facing a problem every time that the user changes the shelf in this page. `myBooks` props comes from the BooksAPI endpoint and will not be passed with the newly created array that was triggered by the user after the selection of a new shelf.
+
+How can I make sure props are "refreshed"? Bear in mind, given that I want to maintain one single source of truth, I will need to push props every time they change. Enter `componentDidUpdate()`
+
+```jsx
+ componentDidUpdate(prevProps) {
+    const { book, myBooks } = this.props;
+    if (JSON.stringify(myBooks) !== JSON.stringify(prevProps.myBooks)) {
+      if (book.shelf === undefined) {
+        this.setState({ shelf: "none" });
+      }
+      if (book.shelf !== undefined) {
+        this.setState({
+          shelf: book.shelf
+        });
+      } else {
+        myBooks.forEach(b => {
+          if (b.id === book.id) {
+            this.setState({
+              shelf: b.shelf
+            });
+          }
+        });
+      }
+    }
+  }
 ```
 
 I think I cover the most challenging pieces. If you made it thus far I hope you have enjoyed.

@@ -1,28 +1,37 @@
 import React, { Component } from "react";
 import BookSelector from "./BookSelector";
+import PropTypes from "prop-types";
 
 class Book extends Component {
+  static propTypes = {
+    book: PropTypes.object.isRequired,
+    onChangeShelf: PropTypes.func.isRequired,
+    myBooks: PropTypes.array
+  };
+
   state = {
     changeStyle: false
   };
 
   render() {
-    const { book, onChangeShelf , myBooks } = this.props;
-    let coverBook = ``
-    if(book.imageLinks !== undefined) {
-      coverBook =`url(${book.imageLinks.smallThumbnail})`
+    const { book, onChangeShelf, myBooks } = this.props;
+    let coverBook = ``;
+    if (book.imageLinks !== undefined) {
+      coverBook = `url(${book.imageLinks.smallThumbnail})`;
     }
 
-    const onMoveBook = (shelf) => {
-      if( shelf !== undefined ) {
+    const onMoveBook = shelf => {
+      if (shelf !== undefined) {
         this.setState({
           changeStyle: !this.state.changeStyle
         });
-      }       
+      }
     };
 
     let backgroundColorIfSelected = { backgroundColor: `none` };
-    if(this.state.changeStyle) {backgroundColorIfSelected = { backgroundColor: `darkgray` } }
+    if (this.state.changeStyle) {
+      backgroundColorIfSelected = { backgroundColor: `darkgray` };
+    }
 
     return (
       <li key={book.id} style={backgroundColorIfSelected}>

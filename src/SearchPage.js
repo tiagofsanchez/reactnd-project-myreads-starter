@@ -5,6 +5,11 @@ import Books from "./Books";
 import PropTypes from "prop-types";
 
 class SearchPage extends Component {
+  static propTypes = {
+    onChangeShelf: PropTypes.func.isRequired,
+    myArchive: PropTypes.array.isRequired
+  };
+
   state = {
     search: "",
     books: "",
@@ -105,11 +110,5 @@ class SearchPage extends Component {
     );
   }
 }
-
-SearchPage.prototypes = {
-  onChangeShelf: PropTypes.func.isRequired,
-  books: PropTypes.array.isRequired,
-  myArchive: PropTypes.array.isRequired
-};
 
 export default SearchPage;
