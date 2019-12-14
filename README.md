@@ -4,11 +4,11 @@ My Udacity project.
 
 With a BookApp that stores my books on different shelf's:
 
-![](./src/images/booApp.png)
+![Book App](./src/images/bookApp.png)
 
 And a search page where the user can search for new books:
 
-![](./src/images/searchBooks.png)
+![Search Page](./src/images/searchBooks.png)
 
 ## TL;DR
 
