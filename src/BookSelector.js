@@ -15,7 +15,7 @@ class BookSelector extends Component {
         shelf: book.shelf
       });
     } else {
-      myBooks.map(b => {
+      myBooks.forEach(b => {
         if (b.id === book.id) {
           this.setState({
             shelf: b.shelf
@@ -27,7 +27,7 @@ class BookSelector extends Component {
 
   componentDidUpdate(prevProps) {
     const { book, myBooks } = this.props;
-    if (myBooks !== prevProps.myBooks) {
+    if (JSON.stringify(myBooks) !== JSON.stringify(prevProps.myBooks)) {
       if (book.shelf === undefined) {
         this.setState({ shelf: "none" });
       }
@@ -36,7 +36,7 @@ class BookSelector extends Component {
           shelf: book.shelf
         });
       } else {
-        myBooks.map(b => {
+        myBooks.forEach(b => {
           if (b.id === book.id) {
             this.setState({
               shelf: b.shelf

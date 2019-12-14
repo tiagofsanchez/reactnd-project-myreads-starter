@@ -3,8 +3,9 @@ import Book from "./Book";
 import PropTypes from "prop-types";
 
 const Books = props => {
-  const { books, onChangeShelf , myBooks } = props;
+  const { books, onChangeShelf, myBooks } = props;
 
+  console.log(myBooks);
   return (
     <Fragment>
       {books &&
@@ -25,7 +26,8 @@ const Books = props => {
 //?? Why is this not catching my error on the SearchPage component ??
 Books.prototypes = {
   books: PropTypes.array.isRequired,
-  onChangeShelf: PropTypes.func.isRequired
+  onChangeShelf: PropTypes.func.isRequired,
+  myBooks: PropTypes.array.isRequired
 };
 
 export default Books;

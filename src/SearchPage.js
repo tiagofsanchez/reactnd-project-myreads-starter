@@ -3,7 +3,6 @@ import CloseSearchButton from "./CloseSearchButton";
 import * as BooksAPI from "./BooksAPI";
 import Books from "./Books";
 import PropTypes from "prop-types";
-import { debounce } from "throttle-debounce";
 
 class SearchPage extends Component {
   state = {
@@ -35,20 +34,24 @@ class SearchPage extends Component {
     /*
     I need to search for `value` as this.setState is ASYNC and 
     if I search for this.state.search will have "delay" given the 
-    this.setState nature 
+    this.setState nature. 
+    NOTE: not using throttle-debounce
     */
+    this.setState(prevState => ({
+      ...prevState,
+      search: value
+    }));
+
     if (value) {
-      debounce(300, () => {
-        BooksAPI.search(value).then(books => {
-          if (books !== "") {
-            this.setState(prevState => ({
-              ...prevState,
-              search: value,
-              books: books,
-              myBooks: myArchive
-            }));
-          }
-        });
+      BooksAPI.search(value).then(books => {
+        if (books !== "") {
+          this.setState(prevState => ({
+            ...prevState,
+            search: value,
+            books: books,
+            myBooks: myArchive
+          }));
+        }
       });
     } else {
       this.setState(prevState => ({
@@ -62,7 +65,7 @@ class SearchPage extends Component {
   render() {
     const { search, books, myBooks } = this.state;
     const { onChangeShelf } = this.props;
-
+    console.log(this.state);
     let booksOrNoBooks = "";
     if (books.error === "empty query" || books === "undefined") {
       booksOrNoBooks = (
