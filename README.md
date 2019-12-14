@@ -4,11 +4,11 @@ My Udacity project.
 
 With a BookApp that stores my books on different shelf's:
 
-![](../src/images/booApp.png)
+![](./src/images/booApp.png)
 
 And a search page where the user can search for new books:
 
-![](../src/images/searchBooks.png)
+![](./src/images/searchBooks.png)
 
 ## TL;DR
 
@@ -25,7 +25,7 @@ I reckon I have taken the quote from the course to literal
 
 This is how my component structure looks like:
 
-![component structure](../src/images/componentStructure.png)
+![component structure](./src/images/componentStructure.png)
 
 # Notes, interesting remarks and stuff that I have learnt on this project
 
