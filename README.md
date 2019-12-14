@@ -2,6 +2,14 @@
 
 My Udacity project.
 
+With a BookApp that stores my books on different shelf's:
+
+![](../src/images/booApp.png)
+
+And a search page where the user can search for new books:
+
+![](../src/images/searchBooks.png)
+
 ## TL;DR
 
 To get started and test my project
@@ -11,28 +19,13 @@ To get started and test my project
 
 ## The structure of my Project
 
-```bash
-├── CONTRIBUTING.md
-├── README.md - This file.
-├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
-├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
-├── public
-│   ├── favicon.ico # React Icon, You may change if you wish.
-│   └── index.html # DO NOT MODIFY
-└── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
-    ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
-    ├── icons # Helpful images for your app. Use at your discretion.
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
-```
+I reckon I have taken the quote from the course to literal
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+> Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+
+This is how my component structure looks like:
+
+![component structure](../src/images/componentStructure.png)
 
 # Notes, interesting remarks and stuff that I have learnt on this project
 
@@ -283,5 +276,7 @@ How can I make sure props are "refreshed"? Bear in mind, given that I want to ma
     }
   }
 ```
+
+This was a little bit an overkiller, but I got to learn a lot. For this component I def could have directly changed the sate at the same time that my callback function was updating my API. For same strange reason at the time I didn't thought about that simple solution... go figure!
 
 I think I cover the most challenging pieces. If you made it thus far I hope you have enjoyed.
