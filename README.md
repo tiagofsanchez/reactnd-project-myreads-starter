@@ -129,9 +129,36 @@ So now I have to be able to `map()` through the above object, however `map()` on
 
 If you are not familiar with `Object.keys()` I definitely encourage you to check out [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) documentation.
 
+## Displaying information from an Array
+
+In `Book.js` component I have implemented a `.map()` to display the elements of that authors array as follows:
+
+```js
+{
+  book.authors &&
+    book.authors.map((author, index) => {
+      return (
+        <p style={{ margin: 0 }} key={index}>
+          {author}
+        </p>
+      );
+    });
+}
+```
+
+While this works, there are better ways to display an array:
+
+```js
+{
+  book.authors && book.authors.join(" / ");
+}
+```
+
+Not the same UI result at the moment, but cleaner implementation.
+
 ## How to always know the shelf of each given book
 
-A big caveat here: I will assume that you will know how to build a controlled component and here will only address you can know in what shelf the book is.
+A big caveat here: I will assume that you will know how to build a controlled component and here will only address the challenge of always knowing what shelf the book is in.
 
 I have created a `BookSelector.js` that will have state that will be the `shelf` of a given book. At the beginning it will empty, but it will be updated with `componentDidMount()` depending on the `this.props.book.shelf` that I will need to pass down by the parent component.
 

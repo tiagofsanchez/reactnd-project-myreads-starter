@@ -36,7 +36,6 @@ class Book extends Component {
       };
     }
 
-    console.log(book.authors);
     return (
       <li key={book.id} style={backgroundColorIfSelected}>
         <div className="book">
@@ -58,10 +57,19 @@ class Book extends Component {
           </div>
           <div className="book-title">{book.title}</div>
           <div className="book-authors">
-            {book.authors &&
-              book.authors.map(author => {
-                return <p style={{ margin: 0 }}>{author}</p>;
-              })}
+            {/* A better way to
+            display information from an array: book.authors.join(' / ') Needles
+            to say that this avoids the problem with the key whenever you use a
+            .map() */}
+            {/* book.authors &&
+              book.authors.map((author, index) => {
+                return (
+                  <p style={{ margin: 0 }} key={index}>
+                    {author}
+                  </p>
+                );
+              }) */}
+            {book.authors && book.authors.join(" / ")}
           </div>
         </div>
       </li>
